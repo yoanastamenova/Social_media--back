@@ -1,4 +1,4 @@
-import User from "./user.model";
+import User from "./user.model.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -11,6 +11,15 @@ export const register = async (req, res) => {
                 {
                     success: false,
                     message: "Email and password fields cannot be empty!"
+                }
+            )
+        }
+
+        if (password.length < 8 || password.length > 12) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "The provided password does not respond to the requirements!"
                 }
             )
         }
@@ -44,5 +53,5 @@ export const register = async (req, res) => {
 }
 
 export const login = async (req, res) => {
-    
+
 }
