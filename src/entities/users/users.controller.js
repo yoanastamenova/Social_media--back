@@ -53,5 +53,55 @@ export const register = async (req, res) => {
 }
 
 export const login = async (req, res) => {
+    try {
+        const {email, password} = req.body;
 
+        // validar
+
+        const user = await User.findOne(
+            {
+              email: email
+            }
+       )
+
+       console.log(user)
+
+       if(!user){
+        return res.status(400).json(
+            {
+                success: false,
+                message: "Invalid email or password!"
+            }
+        )
+       }
+
+       const token = jwt.sign(
+        {
+            id: user._id,
+            role: user.role
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: "2h"
+        }
+       )
+
+
+       res.status(200).json(
+        {
+            success: true,
+            message: "Logged in!",
+            data: token
+        }
+       )
+        
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error logging in user! Try again!",
+                error: error.message
+            }
+        )
+    }
 }
