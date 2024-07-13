@@ -88,43 +88,40 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 ## Endpoints
 
 <details>
-<summary>Authentication</summary> 
-
-- **REGISTER 🔑**
-
-          POST http://localhost:4000/api/register
-
-    body:
-
-    ```js
-        {
-            "email": "name@mail.com",
-            "password": "123456789"
-        }
-    ```
-
-<br>
-
-- **LOGIN 🔓**	
-
-          POST http://localhost:4000/api/login
-
-    body:
-
-    ```js
-        {
-            "email": "name@mail.com",
-            "password": "123456789"
-        }
-    ```
-</details>
-
-<details>
 <summary>Users</summary>
 
-- **GET ALL USERS 🔎** (only admin)
+- REGISTER 🔑
 
-          GET http://localhost:4000/api/users
+          POST http://localhost:5001/api/users/register
+
+    body:
+
+    ```js
+        {
+            "email": "name@mail.com",
+            "password": "123456789"
+        }
+    ```
+
+<br>
+
+- LOGIN 🔓	
+
+          POST http://localhost:5001/api/users/login
+
+    body:
+
+    ```js
+        {
+            "email": "name@mail.com",
+            "password": "123456789"
+        }
+    ```
+<br>
+
+- GET ALL USERS 🔎 (only admin)
+
+          GET http://localhost:5001/api/users/all
 
     auth:
 
@@ -134,9 +131,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 <br>
 
-- **GET USER PROFILE 🗂**
+- GET USER PROFILE 🗂
 
-          GET http://localhost:4000/api/users/profile
+          GET http://localhost:5001/api/users/profile
 
     auth:
 
@@ -146,9 +143,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 <br>
 
-- **UPDATE USER PROFILE BY ID ⚙️**
+- UPDATE USER PROFILE ⚙️
 
-          PUT http://localhost:4000/api/profile/update
+          PUT http://localhost:4000/api/users/profile/update
 
     body:
 
@@ -165,9 +162,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
     ```
 <br>
 
-- **GET USER BY EMAIL 🪪** (only admin)
+- GET USER BY EMAIL 🪪 (only admin)
 
-          GET http://localhost:4000/api/users/:email
+          GET http://localhost:5001/api/users/email
 
     body:
 
@@ -185,9 +182,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 <br>
 
 
-- **DELETE USER BY ID 🪪**  (only admin)
+- DELETE USER 🪪  (only admin)
 
-          DELETE http://localhost:4000/api/users/:id
+          DELETE http://localhost:5001/api/users/:id
 
     body:
 
@@ -205,9 +202,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 <br>
 
-- **CHANGE USER ROLE BY ID 🗂** (only admin)
+- CHANGE USER ROLE BY ID 🗂 (only admin)
 
-          PUT http://localhost:4000/api/users/:id/role
+          PUT http://localhost:5001/api/users/role
 
     auth:
 
@@ -226,18 +223,17 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 </details>
 
 <details>
-<summary>Appointments</summary>
+<summary>Posts</summary>
 
-- **CREATE APPOINTMENT ☎️**
+- CREATE POST ☎️
 
-          POST http://localhost:4000/api/appointments/create
+          POST http://localhost:5001/api/posts/create
 
     body:
 
     ```js
         {
-        "appointment_date": "2024/01/01",
-        "service_id": 2
+        "message": "your message here"
         }
     ```
 
@@ -249,7 +245,19 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 <br>
 
-- **UPDATE USER APPOINTMENT BY ID☎️**
+- DELETE POST BY ID ☎️
+
+          DELETE http://localhost:5001/api/posts/delete/:id
+
+    auth:
+
+    ```js
+        your token
+    ```
+
+<br>
+
+- UPDATE POST ☎️
 
           PUT http://localhost:4000/api/appointments/change
 
@@ -257,8 +265,8 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
     ```js
         {
-        "id": 3           (the id of the appointment to update)
-        "appointment_date": "2024/07/20"        (the new date)
+        "id": 3           (the id of the post to update)
+        "message": "newinfo"       (the new info)
         }
     ```
 
@@ -270,9 +278,22 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 <br>
 
-- **GET USER APPIONTMENTS ☎️**
+- GET USER POSTS ☎️
 
-          GET http://localhost:4000/api/appointments/scheduled
+          GET http://localhost:5001/api/posts/own
+
+    auth:
+
+    ```js
+        your token
+    ```
+
+
+<br>
+
+- GET ALL POSTS ☎️ (admin only)
+
+          GET http://localhost:5001/api/posts/all
 
     auth:
 
@@ -282,28 +303,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 <br>
 
-- **DELETE APPOINTMENT BY ID ☎️**
+- GET POST BY ID ☎️
 
-          DELETE http://localhost:4000/api/appointments/delete
-
-    auth:
-
-    ```js
-        your token
-    ```
-    body:
-
-    ```js
-       {
-        "id": 3 (of the appointment you want to delete)
-       }
-    ```
-
-<br>
-
-- **GET APPOINTMENT BY ID ☎️**
-
-          GET http://localhost:4000/api/appointments/:id
+          GET http://localhost:5001/api/posts/:id
 
     auth:
 
@@ -315,116 +317,51 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
     ```js
         {
-        "id": 3           (the id of the appointment)
+        "id": 3           (the id of the post wanted)
         }
     ```
+<br>
 
+- GET USER POSTS BY USER ID ☎️
+
+          GET http://localhost:5001/api/posts/user/:id
+
+    auth:
+
+    ```js
+        your token
+    ```
+
+    body:
+
+    ```js
+        {
+        "id": 3           (the id of the user)
+        }
+    ```
 </details>
 
 <details>
-<summary>Services</summary>
+<summary>Likes</summary>
 
-- **GET ALL SERVICES 🗂**
+- LIKE OR DISLIKE A POST ☎️
 
-          GET http://localhost:4000/api/services
+          GET http://localhost:5001/api/posts/like/:id
 
     auth:
 
     ```js
         your token
     ```
-
 <br>
-
-- **CREATE SERVICE 🗂** (only for admin)
-
-          POST http://localhost:4000/api/services
-
-    body:
-
-    ```js
-        {
-        "service_name": "name",
-        "description": "what is the service about"
-        }
-    ```
-
-    auth:
-
-    ```js
-        your token
-    ```
-
-<br>
-
-- **UPDATE SERVICE BY ID 🪪** (only admin)
-
-          PUT http://localhost:4000/api/services/:id
-
-    body:
-
-    ```js
-        {
-        "id": 3 (the id of the service to be updated)
-        "service_name": "new name"     (new info)
-        }
-    ```
-
-    auth:
-
-    ```js
-        your token
-    ```
-
-<br>
-
-- **DELETE SERVICE BY ID🪪** (only admin)
-
-          DELETE http://localhost:4000/api/services/:id
-
-    auth:
-
-    ```js
-        your token
-    ```
-
-    body:
-     ```js
-        {
-            "id" : 3
-        }
-    ```
-
 </details>
 
 <details>
-<summary>Roles</summary>
+<summary>Follow</summary>
 
-- **GET ALL ROLES** (only admin)
-      
-     GET http://localhost:4000/api/roles
+- FOLLOW OR UNFOLLOW A USER ☎️
 
-     
-    auth:
-
-    ```js
-        your token
-    ```
-
-<br>
-
-- **CREATE ROLE** (only admin)
-      
-      POST http://localhost:4000/api/roles/create
-    
-
-    body:
-
-    ```js
-        {
-        "name": "newRole"
-        }
-    ```
+          GET http://localhost:5001/api/users/follow/:id
 
     auth:
 
@@ -432,48 +369,20 @@ the posts and users as a post cannot exist by itself. A post can have likes such
         your token
     ```
 <br>
+</details>
 
-- **UPDATE ROLE BY ID**  (only admin)
-     
-     PUT http://localhost:4000/api/roles/update/:id
+<details>
+<summary>Timeline</summary>
 
-    body:
+- GET TIMELINE ☎️
 
-    ```js
-        {
-        "id": 8,
-        "name": "newName"
-        }
-    ```
+          GET http://localhost:5001/api/posts/timeline
 
-     
     auth:
 
     ```js
         your token
     ```
-
-<br>
-
-- **DELETE ROLE BY ID** (only admin)
-
-    PUT http://localhost:4000/api/roles/delete
-
-      body:
-
-    ```js
-        {
-        "id": 8
-        }
-    ```
-
-     
-    auth:
-
-    ```js
-        your token
-    ```
-
 <br>
 </details>
 

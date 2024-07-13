@@ -15,7 +15,7 @@ app.get('/healthy', (req, res) => {
     });
 });
 
-app.use('/', rootRouter)   
+app.use('/api', rootRouter)   
 
 dbConnection()
    .then(() => {
