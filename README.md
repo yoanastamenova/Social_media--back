@@ -66,11 +66,14 @@ Used technologies for the project:
 
 ## ER Diagram from SQL
 
-<img src="./img/Screenshot 2024-07-03 at 20.05.06.png">
+<img src="./img/Schema.png">
 
-- We have 4 entities in our Database created here. The strong among them is Roles (it can exist by itself), then we have Users which has many to one relation
-  with roles. After this, we have Services which has One to many relation with our last entitiy (Appointments). Speaking of it - Appointments is the weekest of all
-  entities, because it depends strongly on Users (because of the user_id) and Services(because of the service_id). More or less our database can be easily understood just by looking at the DDL schema posted here.
+- 1 Strong entitiy - Users (can exist by itself without depending on another entitiy).
+- 1 Weak entitiy - Posts (depends on users, it must be written/posted by a user).
+<br>
+
+Even that we have a non relational database project, there is a relation between
+the posts and users as a post cannot exist by itself. A post can have likes such as user can have followers and followings.
 
 ## Local installation option
 
