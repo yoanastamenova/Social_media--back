@@ -1,4 +1,4 @@
-# Social Media API Project
+# Social Media API Project ❤️
 
 Welcome to my second backend project using various technologies and libraries!
 
@@ -85,322 +85,401 @@ Used technologies for the project:
 ## Endpoints
 
 <details>
-<summary>Authentication</summary>
+<summary>Authentication</summary> 
 
-- AUTH
+- **REGISTER 🔑**
 
-  - REGISTER
-
-          POST http://localhost:4000/api/auth/register
+          POST http://localhost:4000/api/register
 
     body:
 
     ```js
         {
-            "email": "yourmail@mail.com",
+            "email": "name@mail.com",
             "password": "123456789"
         }
     ```
 
-  - LOGIN
+<br>
 
-          POST http://localhost:4000/api/auth/login
+- **LOGIN 🔓**	
+
+          POST http://localhost:4000/api/login
 
     body:
 
     ```js
         {
-            "email": "yourmail@mail.com",
+            "email": "name@mail.com",
             "password": "123456789"
         }
     ```
+</details>
 
-      </details>
-      <details>
-
+<details>
 <summary>Users</summary>
 
-- USERS
+- **GET ALL USERS 🔎** (only admin)
 
-      - GET ALL USERS (ONLY FOR ADMINS)
+          GET http://localhost:4000/api/users
 
-              GET http://localhost:4000/api/users
+    auth:
 
-          auth:
-          ```
-          your token
+    ```js
+        your token
+    ```
 
-          ```
+<br>
 
-       - SHOW USER PROFILE
+- **GET USER PROFILE 🗂**
 
-              GET http://localhost:4000/api/users/profile
+          GET http://localhost:4000/api/users/profile
 
-          auth:
-          ```
-          your token
+    auth:
 
-          ```
+    ```js
+        your token
+    ```
 
-      - CHANGE PROFILE INFO
+<br>
 
-              PUT http://localhost:4000/api/users/profile/change
+- **UPDATE USER PROFILE BY ID ⚙️**
 
-          auth:
-          ```
-          your token
+          PUT http://localhost:4000/api/profile/update
 
-          ```
-          body:
-          ``` js
-              {
-                  info you want to change goes here
-              }
-          ```
+    body:
 
-      - PROFILE FILTERED BY EMAIL
+    ```js
+        {
+        "email": "newemail@mail.com"
+        }
+    ```
 
-              GET http://localhost:4000/api/users/:email
+    auth:
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-               {
-                  "email": "the users email goes here"
-               }
-          ```
+    ```js
+        your token
+    ```
+<br>
 
-      - DELETE USER BY ID
+- **GET USER BY EMAIL 🪪** (only admin)
 
-              GET http://localhost:4000/api/users/:id
+          GET http://localhost:4000/api/users/:email
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-               {
-                  "id": "the ID of the user goes here"
-               }
-          ```
+    body:
+
+    ```js
+        {
+            "email": "example@mail.com"
+        }
+    ```
+
+    auth:
+
+    ```js
+        your token
+    ```
+<br>
+
+
+- **DELETE USER BY ID 🪪**  (only admin)
+
+          DELETE http://localhost:4000/api/users/:id
+
+    body:
+
+    ```js
+        {
+            "id": 3     (the id of the user we want to delete)
+        }
+    ```
+
+    auth:
+
+    ```js
+        your token
+    ```
+
+<br>
+
+- **CHANGE USER ROLE BY ID 🗂** (only admin)
+
+          PUT http://localhost:4000/api/users/:id/role
+
+    auth:
+
+    ```js
+        your token
+    ```
+    body:
+
+    ```js
+        {
+            "id" : 1 (this is the id of the user we will update)
+            "role_id": 3     (the new role_id for our user goes here)
+        }
+    ```
 
 </details>
 
 <details>
-
 <summary>Appointments</summary>
 
-- APPOINTMENTS
+- **CREATE APPOINTMENT ☎️**
 
-      - CREATE APPOINTMENT
+          POST http://localhost:4000/api/appointments/create
 
-              POST http://localhost:4000/api/appointments/create
+    body:
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "appointment_date": "2024/01/01",
-                  "service_id": 2
-              }
-          ```
+    ```js
+        {
+        "appointment_date": "2024/01/01",
+        "service_id": 2
+        }
+    ```
 
-      - CHANGE APPOINTMENT
+    auth:
 
-              PUT http://localhost:4000/api/appointments/change
+    ```js
+        your token
+    ```
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "id": your appointment id,
-                  "infotochange": value
-              }
-          ```
+<br>
 
-          - FIND APPOINTMENT BY ID
+- **UPDATE USER APPOINTMENT BY ID☎️**
 
-              GET http://localhost:4000/api/appointments/:id
+          PUT http://localhost:4000/api/appointments/change
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "id": 1
-              }
-          ```
+    body:
 
-          - SHOW USER APPOINTMENTS
+    ```js
+        {
+        "id": 3           (the id of the appointment to update)
+        "appointment_date": "2024/07/20"        (the new date)
+        }
+    ```
 
-              GET http://localhost:4000/api/appointments/scheduled
+    auth:
 
-          auth:
-          ```
-          your token
-          ```
+    ```js
+        your token
+    ```
 
-          - DELETE APPOINTMENT
+<br>
 
-              DELETE http://localhost:4000/api/appointments/delete
+- **GET USER APPIONTMENTS ☎️**
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "id": 1
-              }
-          ```
+          GET http://localhost:4000/api/appointments/scheduled
 
-  </details>
+    auth:
 
-<details>
+    ```js
+        your token
+    ```
 
-<summary> Services </summary>
+<br>
 
-- SERVICES 
+- **DELETE APPOINTMENT BY ID ☎️**
 
-    - CREATE SERVICE (only for admins)
-        POST http://localhost:4000/api/services
+          DELETE http://localhost:4000/api/appointments/delete
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "service_name": "Name",
-                  "description": "blablabla.com"
-              }
-          ```
+    auth:
 
-      - SEE ALL SERVICES
+    ```js
+        your token
+    ```
+    body:
 
-              GET http://localhost:4000/api/services
+    ```js
+       {
+        "id": 3 (of the appointment you want to delete)
+       }
+    ```
 
-          auth:
-          ```
-          your token
-          ```
+<br>
 
+- **GET APPOINTMENT BY ID ☎️**
 
-      - UPDATE SERVICE (only for admins)
+          GET http://localhost:4000/api/appointments/:id
 
-              PUT http://localhost:4000/api/services/:id
+    auth:
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "id": 2,
-                  "description": "blablabla.com"
-              }
-          ```
-       - DELETE SERVICE BY ID
+    ```js
+        your token
+    ```
 
-              GET http://localhost:4000/api/services/:id
+    body:
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "id": 1
-              }
-          ```
+    ```js
+        {
+        "id": 3           (the id of the appointment)
+        }
+    ```
 
-  </details>
-
+</details>
 
 <details>
+<summary>Services</summary>
 
-<summary> Roles </summary>
+- **GET ALL SERVICES 🗂**
 
-- ROLES 
+          GET http://localhost:4000/api/services
 
-    - SEE ALL ROLES (only for admins!)
+    auth:
 
-              GET http://localhost:4000/api/roles
+    ```js
+        your token
+    ```
 
-          auth:
-          ```
-          your token
-          ```
+<br>
 
-    - CREATE ROLE (only for admins)
-        POST http://localhost:4000/api/roles/create
+- **CREATE SERVICE 🗂** (only for admin)
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "id": 1,
-                  "name": "hokage"
-              }
-          ```
+          POST http://localhost:4000/api/services
 
-      - UPDATE ROLE (only for admins)
+    body:
 
-              PUT http://localhost:4000/api/roles/update/:id
+    ```js
+        {
+        "service_name": "name",
+        "description": "what is the service about"
+        }
+    ```
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "id": 2,
-                  "infotoupdate": "blablabla"
-              }
-          ```
-       - DELETE ROLE
+    auth:
 
-              DELETE http://localhost:4000/api/roles/delete
+    ```js
+        your token
+    ```
 
-          auth:
-          ```
-          your token
-          ```
-          body:
-          ``` js
-              {
-                  "name": superAdmin
-              }
-          ```
+<br>
 
-  </details>
+- **UPDATE SERVICE BY ID 🪪** (only admin)
 
-## Future functionalities
+          PUT http://localhost:4000/api/services/:id
 
-✅ Add artists and relate them with appointments (still in progress) 
-⬜ Add user biometrics
-⬜ Email and password validations
-⬜ ...  
+    body:
+
+    ```js
+        {
+        "id": 3 (the id of the service to be updated)
+        "service_name": "new name"     (new info)
+        }
+    ```
+
+    auth:
+
+    ```js
+        your token
+    ```
+
+<br>
+
+- **DELETE SERVICE BY ID🪪** (only admin)
+
+          DELETE http://localhost:4000/api/services/:id
+
+    auth:
+
+    ```js
+        your token
+    ```
+
+    body:
+     ```js
+        {
+            "id" : 3
+        }
+    ```
+
+</details>
+
+<details>
+<summary>Roles</summary>
+
+- **GET ALL ROLES** (only admin)
+      
+     GET http://localhost:4000/api/roles
+
+     
+    auth:
+
+    ```js
+        your token
+    ```
+
+<br>
+
+- **CREATE ROLE** (only admin)
+      
+      POST http://localhost:4000/api/roles/create
+    
+
+    body:
+
+    ```js
+        {
+        "name": "newRole"
+        }
+    ```
+
+    auth:
+
+    ```js
+        your token
+    ```
+<br>
+
+- **UPDATE ROLE BY ID**  (only admin)
+     
+     PUT http://localhost:4000/api/roles/update/:id
+
+    body:
+
+    ```js
+        {
+        "id": 8,
+        "name": "newName"
+        }
+    ```
+
+     
+    auth:
+
+    ```js
+        your token
+    ```
+
+<br>
+
+- **DELETE ROLE BY ID** (only admin)
+
+    PUT http://localhost:4000/api/roles/delete
+
+      body:
+
+    ```js
+        {
+        "id": 8
+        }
+    ```
+
+     
+    auth:
+
+    ```js
+        your token
+    ```
+
+<br>
+</details>
+
+## Future functionalities 
+<br>
+✅ Add artists and relate them with appointments (still in progress) <br>
+⬜ Add user biometrics <br>
+⬜ Email and password validations <br>
+⬜ ...  <br>
 
 ## Contribute to the project
 
