@@ -24,14 +24,16 @@ Welcome to my second backend project using various technologies and libraries!
 ## About the project
 
 The main idea of this project is to create a new social media which has users, posts, comments, follows and likes. It uses non-relational database (in our case MongoDB + mongoose library) for data storage. 
+
 The web app has various functionalities for users such as register, login, check profile, amend profile, create posts , update posts, delete post, find a specific post, see all my posts as well as other users posts, like other posts or dislike them and follow/unfollow other users. There are few more functionalities implemented only for admins and super admins of the page. We also have seeders(used to insert data faster in our database in case of refresh) and middlewares(used for authentication methods such as tokens).
-The project is developed untill production and been worked on continously. 
+
+The project is developed and now it was deployed to production.
 <br> More functionalities coming veeeery soon! :)
 
 ## Deploy 🚀
 
 <div align="center">
-    <a href="https://tattoo-studio.zeabur.app/"><strong> Click here! </strong></a>🚀🚀🚀
+    <a href="https://tattoo-studio.zeabur.app/"><strong> Coming soon! </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
@@ -95,7 +97,6 @@ Used technologies for the project:
 
     ```js
         {
-            "user": "Name",
             "email": "yourmail@mail.com",
             "password": "123456789"
         }
@@ -109,7 +110,6 @@ Used technologies for the project:
 
     ```js
         {
-            "user": "Name",
             "email": "yourmail@mail.com",
             "password": "123456789"
         }
