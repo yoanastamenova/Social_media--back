@@ -54,10 +54,20 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
+        //1. Get the info
         const {email, password} = req.body;
-
-        // validar
-
+ 
+        //2.Validate it
+        if(!email || !password){
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "Email and password invalid!"
+                }
+            )
+        }
+        
+        //3. Look for the info in the database
         const user = await User.findOne(
             {
               email: email
