@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-
 export const auth = (req, res, next) => {
     try {
         if(!req.headers.authorization) {                   //check if token is passed 
