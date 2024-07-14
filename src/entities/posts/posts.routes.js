@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { auth } from "../../middlewares/auth";
+import { isAdmin } from "../../middlewares/isAdmin";
 
 const router = Router();
 
@@ -7,8 +8,8 @@ router.post('/create', auth, createPost)        // creates new post from the aut
 router.delete('/delete/:id', auth, deletePost)           //deletes a selected post
 router.put('/update', auth, updatePost)                  //updates a selected post
 router.get('/own', auth, getUserPosts)                  //gets all post by the user
-router.get('/all', auth, getAllPosts)                   //gets a post by its ID
-router.get('/:id', auth, getPostById)                   //gets a post by its ID
-router.get('/user/:id', auth, getPostByUserId)            //gets a post by its ID
+router.get('/all', auth, isAdmin,getAllPosts)                   //gets a post by its ID
+router.get('/:id', auth, isAdmin, getPostById)                   //gets a post by its ID
+router.get('/user/:id', auth, isAdmin, getPostByUserId)            //gets a post by its ID
 
 export default router
