@@ -1,7 +1,7 @@
 export const isAdmin = (req, res, next) => {
     try {
-        if(req.tokenData.role_id !== 2) {
-         return res.status(400).json(
+        if(req.tokenData.role !== 'admin') {
+         return res.status(401).json(
             {
             success: false,
             message: "Access denied! You are not admin!"

@@ -19,9 +19,10 @@ app.use('/api', rootRouter)
 
 dbConnection()
    .then(() => {
-    console.log('Database connection established!');
+    console.log('Connected to MongoDB!');
     app.listen(PORT, () => {
-        console.log(`Server running on ${PORT}. No issues found.`)
+        console.log(`Server running on port: ${PORT}.`)
+        console.log('============');
     });
    }) .catch(error => {
     console.error('Error establishing connection with the database:', error)
