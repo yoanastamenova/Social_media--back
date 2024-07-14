@@ -182,3 +182,51 @@ export const getUserProfile = async (req, res) => {
         )
     }
 }
+
+export const updateProfile = async (req, res) => {
+    try {
+        //1. Get the info for the profile we want to amend
+    const userID = req.token._id;
+    const body = req.body;
+
+    //2. Check if that user exists
+    const user = User.findById(userID);
+
+    if(!user) {
+        return res.status(404).json(
+            {
+                succes: false,
+                message: "User does not exist! Try again!"
+            }
+        )
+    }
+
+    //3. If user is found, save the changes
+
+    const newUser = User.findOneAndUpdate(
+     {
+        email: body
+     }
+    )
+
+    //4. Provide a response
+     res.status(200).json(
+        {
+            success: true,
+            message: "User info updated successfully",
+            data: newUser
+        }
+     )
+
+
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message:"Error updating user profile!",
+                error: error.message
+            }
+        )
+    }
+}
