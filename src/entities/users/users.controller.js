@@ -175,12 +175,12 @@ export const getAllUsers = async (req, res) => {
 export const getUserProfile = async (req, res) => {
     try {
         //1. Check token data
-        const userID = req.tokenData.userID;
+        const userID = req.tokenData._id;
 
         //.2 Validate this user exists
-        const user = await User.findById(
+        const user = await User.findOne(
             {
-                _id: userID
+                id: userID
             }
         ) .select ('-password')
 
@@ -206,7 +206,7 @@ export const getUserProfile = async (req, res) => {
             {
                 success: false,
                 message: "Error retriving profile!",
-                error: error
+                error: error.message
             }
         )
     }
@@ -215,7 +215,7 @@ export const getUserProfile = async (req, res) => {
 export const updateProfile = async (req, res) => {
     try {
         //1. Get the info for the profile we want to amend
-        const userID = req.token._id;
+        const userID = req.tokenData._id;
         const email = req.body.email;
         const password = req.body.password;
 

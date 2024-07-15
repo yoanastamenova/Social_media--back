@@ -14,11 +14,9 @@ router.get('/all', auth, isAdmin, getAllUsers)       //as admin see all users
 router.get('/profile', auth, getUserProfile)    //see your profile
 router.put('/profile/update', auth, updateProfile)   //modify your profile
 
-
 // EXTRA CRUD
 // router.get('/email', isAdmin, getUserByEmail)          //get specific user by his mail
 // router.delete('/:id', auth, isAdmin, deleteUser)          //delete user by id
 // router.put('/role', isAdmin, changeUserRole)           //change user role
-
 
 export default router
