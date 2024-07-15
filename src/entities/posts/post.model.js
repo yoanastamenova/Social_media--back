@@ -3,7 +3,8 @@ import { Schema, model } from "mongoose";
 const PostSchema = new Schema(
     {
         message: {
-
+            type: String,
+            required: true
         },
         user: {
             type: Schema.Types.ObjectId,
