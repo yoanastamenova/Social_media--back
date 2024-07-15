@@ -259,7 +259,6 @@ export const updateProfile = async (req, res) => {
     }
 }
 
-
 //// EXTRA CRUD
 
 export const getUserByEmail = async (req, res) => {
@@ -331,4 +330,49 @@ export const deleteUser = async (req, res) => {
             error: error.message,
         });
     }
+}
+
+export const changeUserRole = async (req, res) => {
+   try {
+     //1. Obtain the userId of the user we want to modify
+     const userId = req.body.id;
+     const newRole = req.body.role;
+ 
+     //2. Validate the info
+     const user = await User.findOne({
+        _id: userId
+     })
+
+     //3. Save the new info
+     const newUser = await User.updateOne(
+        {_id: userId},
+        { role: newRole },
+        {new: true} // Returns the updated user
+    );
+
+    if(!newUser) {
+        return res.status(404).json({
+            success: false,
+            message: "Nothing to be changed!"
+        });
+    }
+
+    // Response
+    res.status(200).json(
+        {
+            success: true,
+            message: "User role updated successfully",
+            data: newUser
+        }
+    );
+     
+   } catch (error) {
+    res.status(500).json(
+        {
+            success: false,
+            message: "Error changing user role!",
+            error: error.message
+        }
+    )
+   }
 }
