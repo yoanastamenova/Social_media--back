@@ -214,47 +214,40 @@ export const getUserProfile = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
     try {
-        //1. Get the info for the profile we want to amend
-        const userID = req.tokenData._id;
+        const userID = req.tokenData.id;
         const email = req.body.email;
-        const password = req.body.password;
 
-        //2. Check if that user exists
-        const user = User.findById(userID);
-
+        // Check if that user exists
+        const user = await User.findOne({ _id: userID });
         if (!user) {
-            return res.status(404).json(
-                {
-                    succes: false,
-                    message: "User does not exist! Try again!"
-                }
-            )
+            return res.status(404).json({
+                success: false,
+                message: "User does not exist! Try again!"
+            });
         }
 
-        //If we are changing the password it should be hashed again
+        // Update user
+        const updatedUser = await User.findOneAndUpdate(
+            {_id: userID},
+            { email: email },
+            {new: true} // Returns the updated user
+        );
 
-        const hashedPassword = bcrypt.hashSync(password, 10);
+        if(!updatedUser) {
+            return res.status(404).json({
+                success: false,
+                message: "Nothing to be updated!"
+            });
+        }
 
-        //3. If user is found, save the changes
-
-        const newUser = User.findOneAndUpdate(
-            {
-                email: email
-            },
-            {
-                password: hashedPassword
-            }
-        )
-
-        //4. Provide a response
+        // Response
         res.status(200).json(
             {
                 success: true,
                 message: "User info updated successfully",
-                data: newUser
+                data: updatedUser
             }
-        )
-
+        );
     } catch (error) {
         res.status(500).json(
             {
@@ -262,10 +255,80 @@ export const updateProfile = async (req, res) => {
                 message: "Error updating user profile!",
                 error: error.message
             }
-        )
+        );
     }
 }
 
 
 //// EXTRA CRUD
 
+export const getUserByEmail = async (req, res) => {
+        try {
+            //1. Check token data
+            const userEmail = req.body.email;
+    
+            //.2 Validate this user exists
+            const user = await User.findOne(
+                {
+                    email: userEmail
+                }
+            )
+    
+            if (!user) {
+                return res.status(404).json(
+                    {
+                        success: false,
+                        message: "User with the given email does not exist!"
+                    }
+                )
+            }
+    
+            //3. Provide a response with the user information
+            res.status(200).json(
+                {
+                    success: true,
+                    message: "User found!",
+                    data: user
+                }
+            )
+        } catch (error) {
+            res.status(500).json(
+                {
+                    success: false,
+                    message: "Error retriving user!",
+                    error: error.message
+                }
+            )
+        }
+}
+
+export const deleteUser = async (req, res) => {
+    try {
+        // Get the id of the user we want to delete from the request body
+        const userID = req.body.id;
+
+        // If user with the given id exists, delete them
+        const userDeleted = await User.findByIdAndDelete(userID); // You can directly pass the id here
+
+        // Check if the user existed and was deleted
+        if (!userDeleted) {
+            return res.status(404).json({
+                success: false,
+                message: "No user to delete!"
+            });
+        }
+
+        // Provide a response with the user information
+        res.status(200).json({
+            success: true,
+            message: "User deleted successfully!",
+            data: userDeleted
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error deleting user!",
+            error: error.message,
+        });
+    }
+}
