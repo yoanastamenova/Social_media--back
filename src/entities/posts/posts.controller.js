@@ -319,6 +319,8 @@ export const getPostByUserId = async (req, res) => {
     }
 }
 
+// LIKE CRUD
+
 export const likeDislike = async (req, res) => {
     try {
         //1. Get the post id from the body
