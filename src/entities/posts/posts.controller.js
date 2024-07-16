@@ -157,3 +157,77 @@ export const updatePost = async (req, res) => {
         )
     }
 }
+
+export const getUserPosts = async (req, res) => {
+    try {
+        //1. Obtain the user info
+        const userId = req.tokenData.id;
+
+        //2. Verify user
+        const user = await User.findOne(
+            {
+                _id: userId
+            }
+        )
+        
+        if(!user) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "User not found!"
+                }
+            )
+        }
+
+        const posts = await Post.find(
+            { 
+                userId: userId 
+            }
+        )
+        
+        res.status(200).json(
+            {
+                success: true,
+                message: "All user posts retrived successfully!",
+                data: posts
+            }
+        )
+
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error getting user posts!",
+                error: error.message
+            }
+        )
+    }
+}
+
+export const getAllPosts = async (req, res) => {
+    try {
+        //1. Look for the posts
+        const posts = await Post.find()
+        .populate()
+
+        //2. Respond
+        res.status(200).json(
+            {
+                success: true,
+                message: "All posts retrived successfully!",
+                data: posts
+            }
+        )
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error retriving all posts!",
+                error: error.message
+            }
+        )
+        
+    }
+}
+
