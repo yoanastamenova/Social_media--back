@@ -376,3 +376,61 @@ export const changeUserRole = async (req, res) => {
     )
    }
 }
+
+//FOLLOW CRUD
+
+export const followUnfollow = async (req, res) => {
+    try {
+        //1. Get both users ID 
+        const user1id = req.tokenData.id;
+        const user2id = req.params.id;
+
+        //2. Validate their existence
+        const user1 = await User.findById(user1id)
+        if(!user1) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "User not found!"
+                }
+            )
+        }
+
+        const user2 = await User.findById(user2id)
+        if(!user2) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "User to follow not found!"
+                }
+            )
+        }
+
+        //3. If both users exist - then check if user1 is following user2 if yes, unfollow, else follow
+        const isFollowing = user1.following.includes(user2id);
+        if (isFollowing) {
+            user2.followers.pull(user1id);
+            user1.following.pull(user2id);
+        } else {
+            user2.followers.push(user1id);
+            user1.following.push(user2id);
+        }
+        await user2.save();
+        await user1.save();
+
+        res.status(200).json(
+            {
+                success: true,
+                message: isFollowing ? "User unfollowed!" : "User followed!",
+            }
+        )
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error interacting with the selected user!",
+                error: error.message
+            }
+        )
+    }
+}

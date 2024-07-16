@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { changeUserRole, deleteUser, getAllUsers, getUserByEmail, getUserProfile, login, register, updateProfile } from "./users.controller.js";
+import { changeUserRole, deleteUser, followUnfollow, getAllUsers, getUserByEmail, getUserProfile, login, register, updateProfile } from "./users.controller.js";
 import { auth } from "../../middlewares/auth.js";
 import { isAdmin } from "../../middlewares/isAdmin.js";
 
@@ -19,4 +19,6 @@ router.get('/email', isAdmin, getUserByEmail)          //get specific user by hi
 router.delete('/:id', auth, isAdmin, deleteUser)          //delete user by id
 router.put('/role', isAdmin, changeUserRole)           //change user role
 
+//FOLLOW/UNFOLLOW
+router.post('/followUnf/:id', auth, followUnfollow)          //to follow or unfollow user by its user ID
 export default router
