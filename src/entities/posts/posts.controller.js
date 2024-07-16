@@ -318,3 +318,52 @@ export const getPostByUserId = async (req, res) => {
         )
     }
 }
+
+export const likeDislike = async (req, res) => {
+    try {
+        //1. Get the post id from the body
+        const postId = req.params.id;
+        const userId = req.tokenData.id;
+
+        //2. Validate if user && post exist
+        const post = await Post.findOne(
+            {
+                _id: postId
+            }
+        )
+
+        if(!post) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "Post not found!"
+                }
+            )
+        }
+
+        //3. If both conditions are met -> check if post is liked, if yes remove the like and like it again
+        const isLiked = post.likes.includes(userId);
+        if (isLiked) {
+            post.likes.pull(userId);
+        } else {
+            post.likes.push(userId)
+        }
+        await post.save()
+
+        res.status(200).json(
+            {
+                success: true,
+                message: isLiked ? "Post disliked successfully!" : "Post liked successfully!",
+                data: post
+            }
+        )
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error interacting with post!",
+                error: error.message
+            }
+        )
+    }
+}

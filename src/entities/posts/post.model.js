@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Mongoose, Schema, model } from "mongoose";
 
 const PostSchema = new Schema(
     {
@@ -11,10 +11,10 @@ const PostSchema = new Schema(
             ref: 'User',
             required: true
         },
-        likes: {
-            type: Number,
-            default: 0
-        }
+        likes: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     },
     {
         timestamps: true,

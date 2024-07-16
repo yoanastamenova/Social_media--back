@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { auth } from "../../middlewares/auth.js";
 import { isAdmin } from "../../middlewares/isAdmin.js";
-import { createPost, deletePost, getAllPosts, getPostById, getPostByUserId, getUserPosts, updatePost } from "./posts.controller.js";
+import { createPost, deletePost, getAllPosts, getPostById, getPostByUserId, getUserPosts, likeDislike, updatePost } from "./posts.controller.js";
 
 const router = Router();
 
@@ -13,4 +13,5 @@ router.get('/all', auth, isAdmin, getAllPosts)                   //gets a post b
 router.get('/:_id', auth, isAdmin, getPostById)                   //gets a post by its ID
 router.get('/user/:_id', auth, isAdmin, getPostByUserId)            //gets a post by its ID
 
+router.post('/likePost/:id', auth, likeDislike)                                //to like or dislike a post
 export default router
