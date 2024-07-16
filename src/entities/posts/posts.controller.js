@@ -107,3 +107,53 @@ export const deletePost = async (req, res) => {
         )
     }
 }
+
+export const updatePost = async (req, res) => {
+    try {
+        //1. Get the post id
+        const postId = req.params._id;
+        const message= req.body.message;
+    
+        //2. Verify it does exist
+        const post = await Post.findOne({
+            _id: postId
+        })
+    
+        if(!post){
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "Post not found!"
+                }
+            )
+        }
+
+        //3. Save the amendments in our database
+        const newPost = await Post.updateOne(
+            {
+                _id: postId
+            },
+            {
+                message: message
+            }
+        )
+
+        //4. Confirm to user
+        res.status(200).json(
+            {
+                success: true,
+                message: "Post was amended successfully!",
+                data: newPost
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error updating post!",
+                error: error.message
+            }
+        )
+    }
+}
