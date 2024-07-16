@@ -1,19 +1,16 @@
 import { Schema, model } from "mongoose";
 
-const PostSchema = new Schema(
+const LikeSchema = new Schema(
     {
-        message: {
-            type: String,
+        postId: {
+            type: Schema.Types.ObjectId,
+            ref: 'Post',
             required: true
         },
         userId: {
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
-        },
-        likes: {
-            type: Number,
-            default: 0
         }
     },
     {
@@ -22,6 +19,6 @@ const PostSchema = new Schema(
     }
 )
 
-const Post = model('Post', PostSchema)
+const Like = model('Like', LikeSchema);
 
-export default Post;
+export default Like;

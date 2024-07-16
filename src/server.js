@@ -8,10 +8,10 @@ app.use(express.json())
 
 const PORT = process.env.PORT
 
-app.get('/healthy', (req, res) => {
+app.get('/home', (req, res) => {
     res.json({
         success: true,
-        message: "Server is healthy!"
+        message: "Welcome to home page!"
     });
 });
 
@@ -19,7 +19,6 @@ app.use('/api', rootRouter)
 
 dbConnection()
    .then(() => {
-    console.log('Connected to MongoDB!');
     app.listen(PORT, () => {
         console.log(`Server running on port: ${PORT}.`)
         console.log('============');

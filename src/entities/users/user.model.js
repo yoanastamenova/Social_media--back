@@ -20,9 +20,17 @@ const UserSchema = new Schema(
             enum: ["user", "admin", "super_admin"],
             default: "user"
         },
-        is_active: {
+        isActive: {
             type: Boolean,
             default: true
+        },
+        followers: {
+            type: Array,
+            default: "",
+        },
+        following: {
+            type: Array,
+            default: ""
         }
     },
     {
