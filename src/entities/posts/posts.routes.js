@@ -5,6 +5,7 @@ import { createPost, deletePost, getAllPosts, getPostById, getPostByUserId, getU
 
 const router = Router();
 
+// POST CRUD
 router.post('/create', auth, createPost)        // creates new post from the authenticated user
 router.delete('/delete/:_id', auth, deletePost)           //deletes a selected post
 router.put('/update/:_id', auth, updatePost)                  //updates a selected post
@@ -13,5 +14,6 @@ router.get('/all', auth, isAdmin, getAllPosts)                   //gets a post b
 router.get('/:_id', auth, isAdmin, getPostById)                   //gets a post by its ID
 router.get('/user/:_id', auth, isAdmin, getPostByUserId)            //gets a post by its ID
 
+//LIKES CRUD
 router.post('/likePost/:id', auth, likeDislike)                                //to like or dislike a post
 export default router

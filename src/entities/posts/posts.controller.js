@@ -6,7 +6,6 @@ export const createPost = async (req, res) => {
         //1. Get the needded data for a post creation
         const { message } = req.body;
         const userId = req.tokenData.id;
-
         //2. Validate our info if is empty && user exists
         if (!message) {
             res.status(400).json(
@@ -16,13 +15,11 @@ export const createPost = async (req, res) => {
                 }
             )
         }
-
         const user = await User.findOne(
             {
                 _id: userId
             }
         )
-
         if (!user) {
             return res.status(404).json(
                 {
@@ -31,7 +28,6 @@ export const createPost = async (req, res) => {
                 }
             )
         }
-
         //3. Create the post in our database
         const newPost = await Post.create(
             {
@@ -39,7 +35,6 @@ export const createPost = async (req, res) => {
                 message: message
             }
         )
-
         //4. Respond
         res.status(201).json(
             {
@@ -48,7 +43,6 @@ export const createPost = async (req, res) => {
                 data: newPost
             }
         )
-
     } catch (error) {
         res.status(500).json(
             {
@@ -65,14 +59,12 @@ export const deletePost = async (req, res) => {
     try {
         //1. Obtain the post id 
         const postId = req.params._id;
-
         //2. Find it in our DB
         const post = await Post.findOne(
             {
                 _id: postId
             }
         )
-
         if (!post) {
             return res.status(404).json(
                 {
@@ -87,7 +79,6 @@ export const deletePost = async (req, res) => {
                 _id: postId
             }
         )
-
         //4. Confirm it 
         res.status(200).json(
             {
@@ -96,7 +87,6 @@ export const deletePost = async (req, res) => {
                 data: deleted
             }
         )
-
     } catch (error) {
         res.status(500).json(
             {
@@ -113,12 +103,10 @@ export const updatePost = async (req, res) => {
         //1. Get the post id
         const postId = req.params._id;
         const message = req.body.message;
-
         //2. Verify it does exist
         const post = await Post.findOne({
             _id: postId
         })
-
         if (!post) {
             return res.status(404).json(
                 {
@@ -127,7 +115,6 @@ export const updatePost = async (req, res) => {
                 }
             )
         }
-
         //3. Save the amendments in our database
         const newPost = await Post.updateOne(
             {
@@ -137,7 +124,6 @@ export const updatePost = async (req, res) => {
                 message: message
             }
         )
-
         //4. Confirm to user
         res.status(200).json(
             {
@@ -146,7 +132,6 @@ export const updatePost = async (req, res) => {
                 data: newPost
             }
         )
-
     } catch (error) {
         res.status(500).json(
             {
@@ -162,14 +147,12 @@ export const getUserPosts = async (req, res) => {
     try {
         //1. Obtain the user info
         const userId = req.tokenData.id;
-
         //2. Verify user
         const user = await User.findOne(
             {
                 _id: userId
             }
         )
-
         if (!user) {
             return res.status(404).json(
                 {
@@ -178,13 +161,11 @@ export const getUserPosts = async (req, res) => {
                 }
             )
         }
-
         const posts = await Post.find(
             {
                 userId: userId
             }
         )
-
         res.status(200).json(
             {
                 success: true,
@@ -192,8 +173,6 @@ export const getUserPosts = async (req, res) => {
                 data: posts
             }
         )
-
-
     } catch (error) {
         res.status(500).json(
             {
@@ -210,7 +189,6 @@ export const getAllPosts = async (req, res) => {
         //1. Look for the posts
         const posts = await Post.find()
             .populate()
-
         //2. Respond
         res.status(200).json(
             {
@@ -235,14 +213,12 @@ export const getPostById = async (req, res) => {
     try {
         //Get the id of the post we want
         const postId = req.params._id;
-
         //2. Verify this post exists
         const post = await Post.findOne(
             {
                 _id: postId
             }
         )
-
         if(!post) {
             return res.status(404).json(
                 {
@@ -251,7 +227,6 @@ export const getPostById = async (req, res) => {
                 }
             )
         }
-
         //3. Respond to the user
         res.status(200).json(
             {
@@ -260,7 +235,6 @@ export const getPostById = async (req, res) => {
                 data: post
             }
         )
-
     } catch (error) {
         res.status(500).json(
             {
@@ -276,14 +250,12 @@ export const getPostByUserId = async (req, res) => {
     try {
         //1. Obtain the id of the user we want to see posts
         const userId = req.params._id;
-
         //2. Verify this user exists
         const user = await User.findOne(
             {
                 _id: userId
             }
         )
-
         if(!user) {
             return res.status(404).json(
                 {
@@ -292,14 +264,12 @@ export const getPostByUserId = async (req, res) => {
                 }
             )
         }
-
         //3. Retrive all posts of this user
         const posts = await Post.find(
             {
                 userId: userId
             }
         )
-
         //4. Respond
         res.status(200).json(
             {
@@ -326,14 +296,12 @@ export const likeDislike = async (req, res) => {
         //1. Get the post id from the body
         const postId = req.params.id;
         const userId = req.tokenData.id;
-
         //2. Validate if user && post exist
         const post = await Post.findOne(
             {
                 _id: postId
             }
         )
-
         if(!post) {
             return res.status(404).json(
                 {
@@ -342,7 +310,6 @@ export const likeDislike = async (req, res) => {
                 }
             )
         }
-
         //3. If both conditions are met -> check if post is liked, if yes remove the like and like it again
         const isLiked = post.likes.includes(userId);
         if (isLiked) {
@@ -351,7 +318,6 @@ export const likeDislike = async (req, res) => {
             post.likes.push(userId)
         }
         await post.save()
-
         res.status(200).json(
             {
                 success: true,
