@@ -84,7 +84,7 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 ` docker run -d -p 27017:27017 --name mongo -v mongo_data:/data/db -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root mongo:latest `
 3. `npm install`  (to get all the npm needed packages)
 4. `npm run dev` to run our server
-5. ` npm run seeds ` to fill our documents
+5. ` npm run seed ` to fill our documents
 
 ## Endpoints
 
