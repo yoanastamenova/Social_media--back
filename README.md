@@ -64,7 +64,7 @@ Used technologies for the project:
 </a>
  </div>
 
-## ER Diagram from SQL
+## Schema from Mongo
 
 <img src="./img/Schema.png">
 
@@ -73,17 +73,18 @@ Used technologies for the project:
 <br>
 
 Even that we have a non relational database project, there is a relation between
-the posts and users as a post cannot exist by itself. A post can have likes such as user can have followers and followings.
+the posts and users as a post cannot exist by itself. A post can have likes such as user can have users that he/she follows and on the contrary users that are following.
 
-## Local installation option
+## Local installation guide
 
-1. Clone the repository from the url
-2. `$ npm install`
-3. Connect the cloned repo with our Database
-4. `$ Execute the migrations`
-5. `$ Execute the seeders`
-6. `$ npm run dev` to elevate our server
-7. ...
+1. Clone the repository from the url:
+`git clone https://github.com/yoanastamenova/Social_media.git `
+2. Connect the cloned repo with MongoDB 
+-  If you dont have Mongo we can use already existing Mongo container from Docker with the following command:
+` docker run -d -p 27017:27017 --name mongo -v mongo_data:/data/db -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root mongo:latest `
+3. `npm install`  (to get all the npm needed packages)
+4. `npm run dev` to run our server
+5. ` npm run seeds ` to fill our documents
 
 ## Endpoints
 
@@ -388,10 +389,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 ## Future functionalities 
 <br>
-✅ Add artists and relate them with appointments (still in progress) <br>
+✅ Add timeline option <br>
 ⬜ Add user biometrics <br>
-⬜ Email and password validations <br>
-⬜ ...  <br>
+⬜ Include profile privacy options <br>
 
 ## Contribute to the project
 
