@@ -1,4 +1,5 @@
 import User from "./user.model.js";
+import Post from "../posts/post.model.js"
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -436,3 +437,37 @@ export const followUnfollow = async (req, res) => {
 }
 
 // TIMELINE CRUD
+
+export const showTimeline = async (req, res) => {
+    try {
+        // Get ID of the user requesting their timeline
+        const userId = req.tokenData.id;
+
+        // Validate user existence
+        const user = await User.findById(userId);
+
+        if(!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found!"
+            });
+        }
+        
+        let following = user.following.filter(id => id);
+        // Fetch all posts from users that the current user is following
+        const posts = await Post.find({ userId: { $in: following } }).sort({ createdAt: -1 });
+
+        // Return the fetched posts
+        res.status(200).json({
+            success: true,
+            message: "Posts fetched successfully!",
+            data: posts
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error fetching posts!",
+            error: error.message
+        });
+    }
+}

@@ -8,9 +8,7 @@ export const isAdmin = (req, res, next) => {
             }
          )
         }
-        
         next();
-        
     } catch (error) {
         res.status(500).json(
             {
@@ -18,6 +16,5 @@ export const isAdmin = (req, res, next) => {
                 message: "Error in checking admin role!"
             }
         )
-        
     }
 } 

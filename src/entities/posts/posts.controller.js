@@ -355,7 +355,8 @@ export const likeDislike = async (req, res) => {
         res.status(200).json(
             {
                 success: true,
-                message: isLiked ? "Post disliked successfully!" : "Post liked successfully!",
+                message: isLiked ? "Post disliked successfully!" 
+                : "Post liked successfully!",
                 data: post
             }
         )

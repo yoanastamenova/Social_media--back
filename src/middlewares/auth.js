@@ -10,18 +10,13 @@ export const auth = (req, res, next) => {
                 }
             )
         }
-
-        const token = req.headers.authorization.split(' ')[1];         //split token to read it
-        
+        const token = req.headers.authorization.split(' ')[1];              //split token to read it
         const decoded = jwt.verify(token, process.env.JWT_SECRET)          //check if token is with the correct secret word
-
-        req.tokenData = {                          //save the data we see if we decode the code of the token of the token as logging session
+        req.tokenData = {                                                 //save the data we see if we decode the code of the token of the token as logging session
             id: decoded.id,
             role: decoded.role           
         }
-        
         next();
-        
     } catch (error) {
         res.status(500).json(
             {
