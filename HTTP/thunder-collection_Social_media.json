@@ -2,9 +2,16 @@
     "clientName": "Thunder Client",
     "collectionName": "Social_media",
     "collectionId": "c68ea8f3-3c85-4112-96f6-901834d47e85",
-    "dateExported": "2024-07-17T14:41:11.760Z",
+    "dateExported": "2024-07-18T13:22:03.477Z",
     "version": "1.2",
     "folders": [
+        {
+            "_id": "a4bb5ca8-00a1-49f7-ac9d-24330adc3709",
+            "name": "AUTH",
+            "containerId": "",
+            "created": "2024-07-18T09:42:58.872Z",
+            "sortNum": 5000
+        },
         {
             "_id": "43a33250-623b-4a55-ae5f-23d9a999ebc2",
             "name": "USERS",
@@ -38,17 +45,17 @@
         {
             "_id": "cc772979-54b1-49b5-aa65-b6cf37d6235f",
             "colId": "c68ea8f3-3c85-4112-96f6-901834d47e85",
-            "containerId": "43a33250-623b-4a55-ae5f-23d9a999ebc2",
+            "containerId": "a4bb5ca8-00a1-49f7-ac9d-24330adc3709",
             "name": "Register",
-            "url": "localhost:5001/api/users/register",
+            "url": "localhost:5001/api/auth/register",
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-07-11T16:22:48.705Z",
-            "modified": "2024-07-16T16:56:58.713Z",
+            "modified": "2024-07-18T13:21:38.874Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"yoana@banana.com\",\n  \"password\": \"123456789\"\n}",
+                "raw": "{\n  \"email\": \"dina@mandarina.com\",\n  \"password\": \"123456789\"\n}",
                 "form": []
             }
         },
@@ -83,17 +90,17 @@
         {
             "_id": "a9a197ea-4d97-4881-bdd4-f50c8d16e232",
             "colId": "c68ea8f3-3c85-4112-96f6-901834d47e85",
-            "containerId": "43a33250-623b-4a55-ae5f-23d9a999ebc2",
+            "containerId": "a4bb5ca8-00a1-49f7-ac9d-24330adc3709",
             "name": "Login",
-            "url": "http://localhost:5001/api/users/login",
+            "url": "http://localhost:5001/api/auth/login",
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-07-14T15:55:03.636Z",
-            "modified": "2024-07-16T16:57:30.567Z",
+            "modified": "2024-07-18T13:21:55.558Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"yoana@banana.com\",\n  \"password\": \"123456789\"\n}",
+                "raw": "{\n  \"email\": \"dina@mandarina.com\",\n  \"password\": \"123456789\"\n}",
                 "form": []
             }
         },
@@ -347,5 +354,5 @@
             }
         }
     ],
-    "ref": "5fFngZVAC0yfxvq_zTsMQC0_eEma894vgdCyczOoJxMwnUdcktWevKInFXEJ-VpDlbB4rEtL1N1_7yT-T22iIw"
+    "ref": "5fFngZVAC0yfxvq_zTsMQEPvziGfZHjSF8ii-W22yF6hiX951y7HpUXQ3Y_W96ZtfN0lGCK5aIF2JpZu872Z0w"
 }

@@ -2,10 +2,9 @@
 
 Welcome to my second backend project using various technologies and libraries!
 
-<img src="./img/logo.jpg">
+<img src="./img/giphy.webp">
 
-<br>
-
+<hr>
   <summary> Table of contents 📝</summary>
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
@@ -21,9 +20,13 @@ Welcome to my second backend project using various technologies and libraries!
     <li><a href="#contact">Contact</a></li>
   </ol>
 
+<hr>
+
 ## About the project
 
 The main idea of this project is to create a new social media which has users, posts, comments, follows and likes. It uses non-relational database (in our case MongoDB + mongoose library) for data storage. 
+
+<img src="./img/gif.webp">
 
 The web app has various functionalities for users such as register, login, check profile, amend profile, create posts , update posts, delete post, find a specific post, see all my posts as well as other users posts, like other posts or dislike them and follow/unfollow other users. There are few more functionalities implemented only for admins and super admins of the page. We also have seeders(used to insert data faster in our database in case of refresh) and middlewares(used for authentication methods such as tokens).
 
@@ -89,21 +92,33 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 ## Endpoints
 
-<h3> Authentication 🔑</h3>
-
-| Method | URL                    | Action           | Auth           | Body                                              |
-|:------:|:----------------------:|:----------------:|:--------------:|:---------------------------------------------------:|
-| POST   | /api/auth/register     | Register user    | <center>N/A (public)</center>   | `{ "email": "youremail@email.com",`<br>`"password_hash": "yourPassword" }` |
-| POST   | /api/auth/login        | Login user       | <center>N/A (public)</center>   | `{ "email": "youremail@email.com",`<br>`"password_hash": "yourPasswordHashed" }` |
-
-<h3>👥 Users</h3>
-
-| Method | URI                        | Action              | Auth               | Body                                              |
-|:------:|:--------------------------:|:-------------------:|:------------------:|:---------------------------------------------------:|
-| GET    | /api/users                 | View all users      | Token (superadmin) | <center>N/A</center>                                               |
-| GET    | /api/users/profile         | View user profile   | Token (user)       | <center>N/A</center>                                               |
-| PUT    | /api/users/profile         | Update user profile | Token (user)       | `{ "first_name": "newFirstName",`<br>`"last_name": "newLastName", "email": "newEmail",`<br>`"password_hash": "newPassword" }` |
-| DELETE | /api/users/:id             | Delete user         | Token (superadmin) | <center>N/A</center>                                               |
+### :key: Authentication
+| Method | URI                    | Action           | Auth        | Body |
+|--------|------------------------|------------------|-------------|------|
+| POST   | /api/auth/register     | Register user    | N/A (public)|{ "email": "youremail@email.com",
+"password": "yourPassword" }    |
+| POST   | /api/auth/login        | Login user       | N/A (public)|{ "email": "youremail@email.com",
+"password": "yourPassword" }      |
+### :busts_in_silhouette: Users
+| Method | URI                   | Action              | Auth                | Body |
+|--------|-----------------------|---------------------|---------------------|------|
+| GET    | /api/users            | View all users      | Token (superadmin)  |      |
+| GET    | /api/users/profile    | View user profile   | Token (user)        |      |
+| PUT    | /api/users/profile    | Update user profile | Token (user)        |      |
+### :memo: Posts
+| Method | URI                        | Action                | Auth        | Body |
+|--------|----------------------------|-----------------------|-------------|------|
+| POST   | /api/posts                 | Create post           | Token (user)|      |
+| DELETE | /api/posts/:id             | Delete post           | Token (user)|      |
+| PUT    | /api/posts                 | Update post           | Token (user)|      |
+| GET    | /api/posts/own             | Get own posts         | Token (user)|      |
+| GET    | /api/posts                 | Get all posts         | N/A (public)|      |
+| GET    | /api/posts/:id             | Get post by id        | N/A (public)|      |
+| GET    | /api/users/posts/:user_id  | Get posts by a user   | N/A (public)|      |
+### :memo: Like
+| Method | URI                        | Action                | Auth          | Body |
+|--------|----------------------------|-----------------------|---------------|------|
+| PUT    | /api/posts/like/:id        | Like and unlike post  | Token (user)  |      |                                       |
 
 
 ## Future functionalities
