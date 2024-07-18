@@ -11,9 +11,9 @@ router.get('/profile', auth, getUserProfile)    //see your profile
 router.put('/profile/update', auth, updateProfile)   //modify your profile
 
 // EXTRA CRUD
-router.get('/email', isAdmin, getUserByEmail)          //get specific user by his mail
+router.get('/email', auth, isAdmin, getUserByEmail)          //get specific user by his mail
 router.delete('/:id', auth, isAdmin, deleteUser)          //delete user by id
-router.put('/role', isAdmin, changeUserRole)           //change user role
+router.put('/role',auth, isAdmin, changeUserRole)           //change user role
 
 //FOLLOW/UNFOLLOW
 router.post('/followUnf/:id', auth, followUnfollow)          //to follow or unfollow user by its user ID

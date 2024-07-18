@@ -30,8 +30,7 @@ The main idea of this project is to create a new social media which has users, p
 
 The web app has various functionalities for users such as register, login, check profile, amend profile, create posts , update posts, delete post, find a specific post, see all my posts as well as other users posts, like other posts or dislike them and follow/unfollow other users. There are few more functionalities implemented only for admins and super admins of the page. We also have seeders(used to insert data faster in our database in case of refresh) and middlewares(used for authentication methods such as tokens).
 
-The project is developed and now it was deployed to production.
-<br> More functionalities coming veeeery soon! :)
+The project is developed to the end and now it was deployed to production. Soon it should have a proper front-end view with React! :) 
 
 ## Deploy 🚀
 
@@ -92,40 +91,49 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 
 ## Endpoints
 
-### :key: Authentication
+### Authentication 👓
 | Method | URI                    | Action           | Auth        | Body |
 |--------|------------------------|------------------|-------------|------|
-| POST   | /api/auth/register     | Register user    | N/A (public)|{ "email": "youremail@email.com",
-"password": "yourPassword" }    |
-| POST   | /api/auth/login        | Login user       | N/A (public)|{ "email": "youremail@email.com",
-"password": "yourPassword" }      |
-### :busts_in_silhouette: Users
+| POST   | /api/auth/register     | Register user    | N/A (public)|{ "email": "youremail@email.com", "password": "yourPassword" }    |
+| POST   | /api/auth/login        | Login user       | N/A (public)|{ "email": "youremail@email.com", "password": "yourPassword" }      |
+### Users 👦🏻 👩🏻
 | Method | URI                   | Action              | Auth                | Body |
 |--------|-----------------------|---------------------|---------------------|------|
-| GET    | /api/users            | View all users      | Token (superadmin)  |      |
+| GET    | /api/users/all            | View all users      | Token (admin)   |      |
 | GET    | /api/users/profile    | View user profile   | Token (user)        |      |
-| PUT    | /api/users/profile    | Update user profile | Token (user)        |      |
-### :memo: Posts
+| PUT    | /api/users/profile/update    | Update user profile | Token (user) | info to update     |
+| GET    | /api/users/email    | Get user by email  | Token (user) | "email": "mail@ex.com"  |
+| DELETE | /api/users/:id   | Delete user by id  | Token (user)        |      |
+| PUT    | /api/users/role   | Update user role  | Token (user)        | "role": "admin"   |
+### Posts ✍🏻
 | Method | URI                        | Action                | Auth        | Body |
 |--------|----------------------------|-----------------------|-------------|------|
-| POST   | /api/posts                 | Create post           | Token (user)|      |
-| DELETE | /api/posts/:id             | Delete post           | Token (user)|      |
-| PUT    | /api/posts                 | Update post           | Token (user)|      |
+| POST   | /api/posts/create                 | Create post           | Token (user)|      |
+| DELETE | /api/posts/delete/:id             | Delete post           | Token (user)|      |
+| PUT    | /api/posts/update/:id                 | Update post           | Token (user)| info to change    |
 | GET    | /api/posts/own             | Get own posts         | Token (user)|      |
-| GET    | /api/posts                 | Get all posts         | N/A (public)|      |
-| GET    | /api/posts/:id             | Get post by id        | N/A (public)|      |
-| GET    | /api/users/posts/:user_id  | Get posts by a user   | N/A (public)|      |
-### :memo: Like
+| GET    | /api/posts/all             | Get all posts         |  Admin |      |
+| GET    | /api/posts/:id             | Get post by id        | Admin |     |
+| GET    | /api/users/posts/user/:id  | Get posts by a user id  | Admin |      |
+### Like 🫶🏻
 | Method | URI                        | Action                | Auth          | Body |
 |--------|----------------------------|-----------------------|---------------|------|
-| PUT    | /api/posts/like/:id        | Like and unlike post  | Token (user)  |      |                                       |
+| POST    | /api/posts/likePost/:id        | Like/Dislike post by id | Token (user)  |      |  
+### Follow 👋🏻
+| Method | URI                        | Action                | Auth          | Body |
+|--------|----------------------------|-----------------------|---------------|------|
+| POST    | /api/users/followUnf/:id       | Follow/Unfollow user from id| Token (user)  |      |                                      |
+### Timeline 🏄🏻‍♂️
+| Method | URI                        | Action                | Auth          | Body |
+|--------|----------------------------|-----------------------|---------------|------|
+| GET    | /api/users/timeline       | Shows user timeline | Token (user)  |      |                                       |
 
 
 ## Future functionalities
 
-✅ Add timeline option <br>
-⬜ Add user biometrics <br>
-⬜ Include profile privacy options <br>
+✅ Add timeline option 
+⬜ Add user biometrics
+⬜ Include profile privacy options
 
 ## Contribute to the project
 
