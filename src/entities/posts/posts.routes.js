@@ -15,5 +15,5 @@ router.get('/:_id', auth, isAdmin, getPostById)                   //gets a post 
 router.get('/user/:_id', auth, isAdmin, getPostByUserId)            //gets a post by its ID
 
 //LIKES CRUD
-router.post('/likePost/:id', auth, likeDislike)                                //to like or dislike a post
+router.put('/likePost/:id', auth, likeDislike)                                //to like or dislike a post
 export default router

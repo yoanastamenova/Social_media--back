@@ -16,7 +16,7 @@ router.delete('/:id', auth, isAdmin, deleteUser)          //delete user by id
 router.put('/role',auth, isAdmin, changeUserRole)           //change user role
 
 //FOLLOW/UNFOLLOW
-router.post('/followUnf/:id', auth, followUnfollow)          //to follow or unfollow user by its user ID
+router.put('/followUnf/:id', auth, followUnfollow)          //to follow or unfollow user by its user ID
 
 //TIMELINE 
 router.get('/timeline', auth, showTimeline)                  //to see your timeline

@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "Social_media",
     "collectionId": "c68ea8f3-3c85-4112-96f6-901834d47e85",
-    "dateExported": "2024-07-18T13:22:03.477Z",
+    "dateExported": "2024-07-19T11:55:17.801Z",
     "version": "1.2",
     "folders": [
         {
@@ -27,18 +27,18 @@
             "sortNum": 20000
         },
         {
+            "_id": "35d2bb12-6823-4700-b060-810563f8b706",
+            "name": "LIKE",
+            "containerId": "",
+            "created": "2024-07-16T16:56:11.330Z",
+            "sortNum": 25000
+        },
+        {
             "_id": "b4e04a94-7dc7-403c-8823-d8377d227882",
             "name": "FOLLOW",
             "containerId": "",
             "created": "2024-07-16T16:56:06.625Z",
             "sortNum": 30000
-        },
-        {
-            "_id": "35d2bb12-6823-4700-b060-810563f8b706",
-            "name": "LIKE",
-            "containerId": "",
-            "created": "2024-07-16T16:56:11.330Z",
-            "sortNum": 40000
         }
     ],
     "requests": [
@@ -64,15 +64,15 @@
             "colId": "c68ea8f3-3c85-4112-96f6-901834d47e85",
             "containerId": "35d2bb12-6823-4700-b060-810563f8b706",
             "name": "Like/Dislike",
-            "url": "http://localhost:5001/api/posts/likePost/6696a0ffafac8b98f9e3a58e",
-            "method": "POST",
+            "url": "http://localhost:5001/api/posts/likePost/6697e8d146511df6023425bf",
+            "method": "PUT",
             "sortNum": 10000,
             "created": "2024-07-16T16:28:58.153Z",
-            "modified": "2024-07-16T16:34:14.182Z",
+            "modified": "2024-07-19T11:51:46.807Z",
             "headers": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTY4OTk0YTk4MzVhZWYzZDcxMGVhMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxMTQyNzY1LCJleHAiOjE3MjExNDk5NjV9.gu27Wi0jd0kyYhm1Sc3cI8dPht8ynbnkC-rkOTLCmhw"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjODI5MzUyYzRmMmE1Y2YwODdhZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMTM4OTgxNiwiZXhwIjoxNzIxMzk3MDE2fQ.gM4_uNvF1_C1UyIsIAEScgLMf6flDqd0NyXbiCE5fH0"
             }
         },
         {
@@ -96,11 +96,11 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-07-14T15:55:03.636Z",
-            "modified": "2024-07-18T13:21:55.558Z",
+            "modified": "2024-07-18T13:39:30.021Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"dina@mandarina.com\",\n  \"password\": \"123456789\"\n}",
+                "raw": "{\n  \"email\": \"yoana@banana.com\",\n  \"password\": \"123456789\"\n}",
                 "form": []
             }
         },
@@ -113,11 +113,11 @@
             "method": "GET",
             "sortNum": 30000,
             "created": "2024-07-14T15:56:22.839Z",
-            "modified": "2024-07-15T14:00:22.005Z",
+            "modified": "2024-07-18T13:39:42.926Z",
             "headers": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTUyYjU2NTZlN2I1ZjkxZjIyNzMxYyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxMDUyMDA4LCJleHAiOjE3MjEwNTkyMDh9.la1v1ZFuGIU9IxlhOUVmZPQdBows-nWokqiBiAhtc8g"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjODI5MzUyYzRmMmE1Y2YwODdhZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMTMwOTk3MCwiZXhwIjoxNzIxMzE3MTcwfQ.4yqZYCJocYoAxa7Dx9DG0efQtPfSU-dtyxUCJZFB3cc"
             }
         },
         {
@@ -129,11 +129,11 @@
             "method": "GET",
             "sortNum": 50000,
             "created": "2024-07-14T15:57:49.506Z",
-            "modified": "2024-07-16T17:05:14.963Z",
+            "modified": "2024-07-18T13:39:52.274Z",
             "headers": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTZhNjZhNjU0YzY5MzFhYzA1ZWVmZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxMTQ5MDUwLCJleHAiOjE3MjExNTYyNTB9.w2kVfMxPozT8PGceej77pG5rROxLom301C7-4s8iCVE"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjODI5MzUyYzRmMmE1Y2YwODdhZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMTMwOTk3MCwiZXhwIjoxNzIxMzE3MTcwfQ.4yqZYCJocYoAxa7Dx9DG0efQtPfSU-dtyxUCJZFB3cc"
             }
         },
         {
@@ -166,16 +166,16 @@
             "method": "GET",
             "sortNum": 70000,
             "created": "2024-07-15T15:48:14.912Z",
-            "modified": "2024-07-16T14:55:12.373Z",
+            "modified": "2024-07-18T13:59:34.585Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"more@morepe.com\"\n}",
+                "raw": "{\n  \"email\": \"morena@morepe.com\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTY4OTk0YTk4MzVhZWYzZDcxMGVhMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxMTQxNjg3LCJleHAiOjE3MjExNDg4ODd9.X8SQu558ytOhKyL9_DcKBjqLGmELjmjDhHvBpvsz_Y0"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjODI5MzUyYzRmMmE1Y2YwODdhZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMTMxMTE2NiwiZXhwIjoxNzIxMzE4MzY2fQ.4un_VrpC9tmqAegB4QqMb_Kff14hEfT2KOVMWaX9MZA"
             }
         },
         {
@@ -282,11 +282,11 @@
             "method": "GET",
             "sortNum": 130000,
             "created": "2024-07-16T15:42:52.825Z",
-            "modified": "2024-07-16T15:43:12.237Z",
+            "modified": "2024-07-19T11:51:38.390Z",
             "headers": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTY4OTk0YTk4MzVhZWYzZDcxMGVhMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxMTQyNzY1LCJleHAiOjE3MjExNDk5NjV9.gu27Wi0jd0kyYhm1Sc3cI8dPht8ynbnkC-rkOTLCmhw"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjODI5MzUyYzRmMmE1Y2YwODdhZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMTM4OTgxNiwiZXhwIjoxNzIxMzk3MDE2fQ.gM4_uNvF1_C1UyIsIAEScgLMf6flDqd0NyXbiCE5fH0"
             }
         },
         {
@@ -326,15 +326,15 @@
             "colId": "c68ea8f3-3c85-4112-96f6-901834d47e85",
             "containerId": "b4e04a94-7dc7-403c-8823-d8377d227882",
             "name": "Follow/Unfollow",
-            "url": "http://localhost:5001/api/users/followUnf/6696a66a654c6931ac05eeff",
-            "method": "POST",
+            "url": "http://localhost:5001/api/users/followUnf/65edc829352c4f2a5cf087af",
+            "method": "PUT",
             "sortNum": 180000,
             "created": "2024-07-16T16:56:26.013Z",
-            "modified": "2024-07-16T17:06:06.707Z",
+            "modified": "2024-07-19T11:54:46.177Z",
             "headers": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTZhNjZhNjU0YzY5MzFhYzA1ZWVmZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxMTQ5MDUwLCJleHAiOjE3MjExNTYyNTB9.w2kVfMxPozT8PGceej77pG5rROxLom301C7-4s8iCVE"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjODI5MzUyYzRmMmE1Y2YwODdhZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMTM4OTgxNiwiZXhwIjoxNzIxMzk3MDE2fQ.gM4_uNvF1_C1UyIsIAEScgLMf6flDqd0NyXbiCE5fH0"
             }
         },
         {
@@ -346,13 +346,13 @@
             "method": "GET",
             "sortNum": 190000,
             "created": "2024-07-17T14:34:02.281Z",
-            "modified": "2024-07-17T14:34:32.063Z",
+            "modified": "2024-07-18T14:02:22.258Z",
             "headers": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTZhNjZhNjU0YzY5MzFhYzA1ZWVmZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxMjI2ODYyLCJleHAiOjE3MjEyMzQwNjJ9.YNJS5MApQiQn3Dyo5OzIc9fOJCtG9aP4b3qMSrcE-Ec"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjODI5MzUyYzRmMmE1Y2YwODdhZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMTMxMTE2NiwiZXhwIjoxNzIxMzE4MzY2fQ.4un_VrpC9tmqAegB4QqMb_Kff14hEfT2KOVMWaX9MZA"
             }
         }
     ],
-    "ref": "5fFngZVAC0yfxvq_zTsMQEPvziGfZHjSF8ii-W22yF6hiX951y7HpUXQ3Y_W96ZtfN0lGCK5aIF2JpZu872Z0w"
+    "ref": "5fFngZVAC0yfxvq_zTsMQOJtI0u8ZrV0VL2JmjwAuw0xx6UVB3GtlmkcrSHQKiuUS9mecQFjzMMSuyXd6LMe3g"
 }
