@@ -35,7 +35,7 @@ The project is developed to the end and now it was deployed to production. Soon 
 ## Deploy 🚀
 
 <div align="center">
-    <a href="https://tattoo-studio.zeabur.app/"><strong> Coming soon! </strong></a>🚀🚀🚀
+    <a href="https://social-media-app.zeabur.app"><strong> Coming soon! </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
