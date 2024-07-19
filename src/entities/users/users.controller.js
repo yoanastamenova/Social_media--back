@@ -7,7 +7,7 @@ export const getAllUsers = async (req, res) => {
         //1. Get all the users
         const users = await User.find()
             .select('-password')
-
+        //2. Respond to page
         res.status(200).json(
             {
                 success: true,
