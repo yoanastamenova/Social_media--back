@@ -1,13 +1,14 @@
 {
   "name": "social_media",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
-    "seed": "node ./src/database/seeders/dbSeeder.js"
+    "seed": "node ./src/database/seeders/dbSeeder.js",
+    "build": "echo \"No build step\""
   },
   "author": "",
   "license": "ISC",
