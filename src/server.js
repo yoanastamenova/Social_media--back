@@ -5,7 +5,6 @@ import rootRouter from './router.js';
 
 const app = express();
 app.use(express.json())
-
 const PORT = process.env.PORT
 
 app.get('/home', (req, res) => {
@@ -15,7 +14,7 @@ app.get('/home', (req, res) => {
     });
 });
 
-app.use('/api', rootRouter)   
+app.use('/api', rootRouter);   
 
 dbConnection()
    .then(() => {

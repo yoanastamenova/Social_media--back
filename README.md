@@ -1,6 +1,6 @@
 # Social Media API Project ❤️
 
-Welcome to my second backend project using various technologies and libraries!
+Welcome to my social media REST API, a Twitter-inspired backend project, designed and developed with versatility and robust functionality in mind. 
 
 <img src="./img/giphy.webp">
 
@@ -24,18 +24,32 @@ Welcome to my second backend project using various technologies and libraries!
 
 ## About the project
 
-The main idea of this project is to create a new social media which has users, posts, comments, follows and likes. It uses non-relational database (in our case MongoDB + mongoose library) for data storage. 
+The main idea for the project was recreating a social media and to be exact I had Twitter (now X) in mind. Constructed with the use of non-relational database technology (MongoDB in conjunction with the Mongoose library), this API gives birth to a social media application where users can engage, share, and interact through texts posts.
 
 <img src="./img/gif.webp">
 
-The web app has various functionalities for users such as register, login, check profile, amend profile, create posts , update posts, delete post, find a specific post, see all my posts as well as other users posts, like other posts or dislike them and follow/unfollow other users. There are few more functionalities implemented only for admins and super admins of the page. We also have seeders(used to insert data faster in our database in case of refresh) and middlewares(used for authentication methods such as tokens).
+## Core Features
 
-The project is developed to the end and now it was deployed to production. Soon it should have a proper front-end view with React! :) 
+Our API boasts an array of features focused on delivering an engaging and seamless user experience. The core functionalities include:
+
+- User Management: Enabling users to register, log in, update their profile, and check out their personal details on their profile.
+
+- Post Management: Users can create, update, and delete their posts. They can also view their own posts as well as posts created by other users. The option to find a specific post adds an additional layer of navigation.
+
+- Interaction: Users can like or dislike posts to express their sentiments. A follow/unfollow feature is also available, allowing users to curate the posts they see based on their preferences.
+
+- Admin Control: Special functionalities are available exclusively for administrators and super administrators, ensuring streamlined content and community management.
+
+- In addition, the use of seeders offers a quick and efficient method for data insertion during a database refresh. Middleware support exists for implementing authentication processes such as tokenization.
+
+With successfully achieving the development milestone and deploying the project to production, the next exciting step is creating a dynamic front-end view using React. This will not only enhance the user interface but also ensure a cohesive, interactive, and intuitive user experience!
+
+Stay tuned for this exciting update! :)
 
 ## Deploy 🚀
 
 <div align="center">
-    <a href="https://social-media-app.zeabur.app"><strong> Coming soon! </strong></a>🚀🚀🚀
+    <a href="https://social-media-app.zeabur.app"><strong> Click here! </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
@@ -132,7 +146,9 @@ the posts and users as a post cannot exist by itself. A post can have likes such
 ## Future functionalities
 
 ✅ Add timeline option 
+
 ⬜ Add user biometrics
+
 ⬜ Include profile privacy options
 
 ## Contribute to the project
