@@ -24,13 +24,17 @@ const UserSchema = new Schema(
             type: Boolean,
             default: true
         },
+        picture: {
+            type: String,
+            require: false
+        },
         followers: {
             type: Array,
-            default: "",
+            default: [],
         },
         following: {
             type: Array,
-            default: ""
+            default: []
         }
     },
     {
