@@ -10,6 +10,8 @@ import path from "path";
 import authRoutes from "./routes/auth.js"
 import { fileURLToPath } from 'url';
 import { register } from "./controllers/auth.js"
+import userRoutes from "./routes/users.js"
+
 
 /* APPLICATION & FILES SETTINGS */
 
@@ -38,11 +40,13 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
+
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register)
 
 // ROUTES
 app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 /* MONGODB SETUP */
 
