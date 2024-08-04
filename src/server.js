@@ -14,6 +14,9 @@ import userRoutes from "./routes/users.js"
 import postRoutes from "./routes/posts.js"
 import { verifyToken } from './middleware/auth.js';
 import { createPost } from "./controllers/posts.js";
+import User from "./models/User.js"
+import Post from "./models/Post.js"
+import { users, posts } from "./data/index.js"
 
 
 /* APPLICATION & FILES SETTINGS */
@@ -60,6 +63,10 @@ mongoose
     .connect(process.env.MONGO_URI, {})
     .then(() => {
     app.listen(PORT, () => console.log(`Connected to ${PORT}`))
+
+    // /* ADD DATA ONE TIME */
+    // User.insertMany(users);
+    // Post.insertMany(posts)
 }) .catch((error) => console.log(`${error} did not connect to database!`))
 
 app.get('/home', (req, res) => {

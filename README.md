@@ -1,10 +1,12 @@
 # Social Media API Project ❤️
 
-Welcome to my social media REST API, a Twitter-inspired backend project, designed and developed with versatility and robust functionality in mind. 
+Welcome to PeakConnect, a mountainers-inspired social media project, designed and developed with versatility and robust functionality in mind. 
 
-<img src="./img/giphy.webp">
+<img src="./src/img/logo.png">
 
 <hr>
+
+
   <summary> Table of contents 📝</summary>
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
@@ -24,9 +26,9 @@ Welcome to my social media REST API, a Twitter-inspired backend project, designe
 
 ## About the project
 
-The main idea for the project was recreating a social media and to be exact I had Twitter (now X) in mind. Constructed with the use of non-relational database technology (MongoDB in conjunction with the Mongoose library), this API gives birth to a social media application where users can engage, share, and interact through texts posts.
+The main idea for the project was recreating a social media for people that love meeting other people and go on mountain adventures with them. Constructed with the use of non-relational database technology (MongoDB in conjunction with the Mongoose library), this API gives birth to a social media application where users can engage, share, and interact through texts and image posts. It has the same functions as most famous social medias but this specific one is created only for the people in the mountains.
 
-<img src="./img/gif.webp">
+<img src="./src/img/view.webp">
 
 ## Core Features
 
@@ -45,6 +47,8 @@ Our API boasts an array of features focused on delivering an engaging and seamle
 With successfully achieving the development milestone and deploying the project to production, the next exciting step is creating a dynamic front-end view using React. This will not only enhance the user interface but also ensure a cohesive, interactive, and intuitive user experience!
 
 Stay tuned for this exciting update! :)
+
+<img src="./src/img/giphy.webp">
 
 ## Deploy 🚀
 
@@ -82,10 +86,13 @@ Used technologies for the project:
 
 ## Schema from Mongo
 
-<img src="./img/Schema.png">
+<img src="./src/img/monogsch.png">
 
-- 1 Strong entitiy - Users (can exist by itself without depending on another entitiy).
-- 1 Weak entitiy - Posts (depends on users, it must be written/posted by a user).
+- 1 Strong entitiy 
+    - Users (can exist by itself without depending on another entitiy).
+- 2 Weak entities 
+    - Posts (depends on users, it must be written/posted by a user).
+    - Friends (related between users)
 <br>
 
 Even that we have a non relational database project, there is a relation between
