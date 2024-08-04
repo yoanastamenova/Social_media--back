@@ -1,121 +1,57 @@
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js"
+import User from "../models/User.js";
 
-// REGISTER
+/* REGISTER USER */
 export const register = async (req, res) => {
-    try {
-        const {
-            firstName,
-            lastName,
-            email,
-            password,
-            picturePath,
-            friends,
-            location,
-            ocupation
-        } = req.body;
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      picturePath,
+      friends,
+      location,
+      occupation,
+    } = req.body;
 
-        if(!email || !password) {
-            return res.json(
-                {
-                    success: false,
-                    message: "Email and password cannot be empty!"
-                }
-             )
-         }
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
 
-        const salt = await bcrypt.genSalt();
-        const passwordHash = await bcrypt.hash(password, salt);
-
-        const newUser = new User({
-            firstName,
-            lastName,
-            email,
-            password: passwordHash,
-            picturePath,
-            friends,
-            location,
-            ocupation,
-            viewdProfile: Math.floor(Math.random() * 10),
-            impressions: Math.floor(Math.random() * 10)
-        })
-
-        const savedUser = await newUser.save();
-
-        res.status(201).json(
-            {
-                success: true,
-                message: "Register was successfull!",
-                data: savedUser
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: passwordHash,
+      picturePath,
+      friends,
+      location,
+      occupation,
+      viewedProfile: Math.floor(Math.random() * 10000),
+      impressions: Math.floor(Math.random() * 10000),
     });
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
-    } catch (error) {
-        res.status(500).json(
-            {
-                success: false,
-                message: "Error creating user!",
-                error: error
-            }
-        )
-    }
-}
-
-// LOGIN
+/* LOGGING IN */
 export const login = async (req, res) => {
-    try {
-        const {email, password} = req.body;
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
+    if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
-        if(!email || !password) {
-            return res.status(404).json({
-                success: false,
-                message: "Email and password cannot be empty!"
-            })
-        }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials. " });
 
-        const user = await User.findOne({
-            email: email,
-        })
-
-        if(!user) {
-            return res.status(404).json(
-                {
-                    success: false,
-                    message: "User does not exist!"
-                }
-            )
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "Invalid password!"
-                }
-            )
-        }
-        
-        const token = jwt.sign({
-            id: user._id,
-        },
-        process.env.JWT_SECRET
-    )
-    
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     delete user.password;
-    
-    res.status(200).json({
-        token,
-        user
-    })
-
-    } catch (error) {
-        res.status(500).json(
-            {
-                success: false,
-                message: "Error logging in!",
-                error: error
-            }
-        )
-    }
-}
+    res.status(200).json({ token, user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
