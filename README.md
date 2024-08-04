@@ -5,8 +5,6 @@ Welcome to PeakConnect, a mountainers-inspired social media project, designed an
 <img src="./src/img/logo.png">
 
 <hr>
-
-
   <summary> Table of contents 📝</summary>
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
@@ -26,7 +24,7 @@ Welcome to PeakConnect, a mountainers-inspired social media project, designed an
 
 ## About the project
 
-The main idea for the project was recreating a social media for people that love meeting other people and go on mountain adventures with them. Constructed with the use of non-relational database technology (MongoDB in conjunction with the Mongoose library), this API gives birth to a social media application where users can engage, share, and interact through texts and image posts. It has the same functions as most famous social medias but this specific one is created only for the people in the mountains.
+The main idea for the project was recreating a social media for people that love meeting other people and go on mountain adventures with them. Constructed with the use of non-relational database technology (MongoDB in conjunction with the Mongoose library), this API gives birth to a social media application where users can engage, share, and interact through texts and image posts. It has the same functions as most famous social medias but this specific one is created only for the people in the mountains. Hope you like it!
 
 <img src="./src/img/view.webp">
 
