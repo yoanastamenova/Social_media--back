@@ -7,13 +7,13 @@ import multer from 'multer';
 import helmet from 'helmet';
 import morgan from 'morgan'
 import path from "path";
-import authRoutes from "./routes/auth.js"
-import { fileURLToPath } from 'url';
-import { register } from "./controllers/auth.js"
-import userRoutes from "./routes/users.js"
-import postRoutes from "./routes/posts.js"
-import { verifyToken } from './middleware/auth.js';
+import { fileURLToPath } from "url";
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
+import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
+import { verifyToken } from "./middleware/auth.js";
 import User from "./models/User.js"
 import Post from "./models/Post.js"
 import { users, posts } from "./data/index.js"
@@ -32,7 +32,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({
-  origin: ['http://localhost:3000'],  // frontend server address
+  origin: ['http://localhost:3002'],  // frontend server address
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   credentials: true  // this allows the server to receive cookies/credentials from the frontend
 }));
