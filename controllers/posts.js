@@ -71,3 +71,26 @@ export const likePost = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 };
+
+/* DELETE */
+export const deletePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Optional: check if the user trying to delete the post is the one who created it
+    // You can implement this check if you store a reference to the user ID in the post
+    if (post.userId.toString() !== req.userId) {
+      return res.status(401).json({ message: "Not authorized to delete this post" });
+    }
+
+    await Post.findByIdAndRemove(id);
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};

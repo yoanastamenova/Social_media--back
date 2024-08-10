@@ -30,7 +30,7 @@ export const getUserFriends = async (req, res) => {
   }
 };
 
-/* UPDATE */
+/* FRIEND FUNCTION */
 export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;
@@ -59,5 +59,36 @@ export const addRemoveFriend = async (req, res) => {
     res.status(200).json(formattedFriends);
   } catch (err) {
     res.status(404).json({ message: err.message });
+  }
+};
+
+/* UPDATE PROFILE */
+export const updateUser = async (req, res) => {
+  const { id } = req.params;
+  console.log("Received ID:", id);
+  const updates = req.body;
+
+  try {
+      const user = await User.findById(id);
+      
+      // Adjust this line according to how your JWT payload is structured
+      if (user._id.toString() !== req.user.id) {
+          return res.status(403).json({ message: "You can only edit your own profile!" });
+      }
+
+      // Updating user fields
+      if (updates.email) user.email = updates.email;
+      if (updates.firstName) user.firstName = updates.firstName;
+      if (updates.lastName) user.lastName = updates.lastName;
+      // Continue as needed for other fields
+
+      const updatedUser = await user.save();
+      
+      // Exclude sensitive data from the response if any
+      const { password, ...result } = updatedUser._doc;
+      
+      res.status(200).json(result);
+  } catch (err) {
+      res.status(500).json({ message: err.message });
   }
 };
