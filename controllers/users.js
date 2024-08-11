@@ -65,7 +65,6 @@ export const addRemoveFriend = async (req, res) => {
 /* UPDATE PROFILE */
 export const updateUser = async (req, res) => {
   const { id } = req.params;
-  console.log("Received ID:", id);
   const updates = req.body;
 
   try {
@@ -80,6 +79,8 @@ export const updateUser = async (req, res) => {
       if (updates.email) user.email = updates.email;
       if (updates.firstName) user.firstName = updates.firstName;
       if (updates.lastName) user.lastName = updates.lastName;
+      if (updates.location) user.location = updates.location;
+      if (updates.occupation) user.occupation = updates.occupation;
       // Continue as needed for other fields
 
       const updatedUser = await user.save();
