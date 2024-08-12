@@ -68,28 +68,57 @@ export const updateUser = async (req, res) => {
   const updates = req.body;
 
   try {
-      const user = await User.findById(id);
-      
-      // Adjust this line according to how your JWT payload is structured
-      if (user._id.toString() !== req.user.id) {
-          return res.status(403).json({ message: "You can only edit your own profile!" });
-      }
+    const user = await User.findById(id);
 
-      // Updating user fields
-      if (updates.email) user.email = updates.email;
-      if (updates.firstName) user.firstName = updates.firstName;
-      if (updates.lastName) user.lastName = updates.lastName;
-      if (updates.location) user.location = updates.location;
-      if (updates.occupation) user.occupation = updates.occupation;
-      // Continue as needed for other fields
+    // Adjust this line according to how your JWT payload is structured
+    if (user._id.toString() !== req.user.id) {
+      return res.status(403).json({ message: "You can only edit your own profile!" });
+    }
 
-      const updatedUser = await user.save();
-      
-      // Exclude sensitive data from the response if any
-      const { password, ...result } = updatedUser._doc;
-      
-      res.status(200).json(result);
+    // Updating user fields
+    if (updates.email) user.email = updates.email;
+    if (updates.firstName) user.firstName = updates.firstName;
+    if (updates.lastName) user.lastName = updates.lastName;
+    if (updates.location) user.location = updates.location;
+    if (updates.occupation) user.occupation = updates.occupation;
+    // Continue as needed for other fields
+
+    const updatedUser = await user.save();
+
+    // Exclude sensitive data from the response if any
+    const { password, ...result } = updatedUser._doc;
+
+    res.status(200).json(result);
   } catch (err) {
-      res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
+
+//ADMIN CRUD
+//GET ALL USERS
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(404).json({ message: err.message })
+  }
+}
+
+//DELETE USER
+export const deleteUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findById(userId);
+
+    if(!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    await User.findByIdAndDelete(userId);
+    res.status(200).json({ message: "User deleted successfully" });
+
+  } catch (error) {
+
+  }
+}

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "dev": "nodemon ./src/server.js",
-    "seed": "node ./src/database/seeders/dbSeeder.js",
+    "dev": "nodemon ./server.js",
+    "seed": "node ./data/dbSeeder.js",
     "build": "echo \"No build step\""
   },
   "author": "",

@@ -118,3 +118,33 @@ export const updatePost = async (req, res) => {
       res.status(500).json({ message: "Server error: " + err.message });
   }
 };
+
+//ADMIN CRUD
+// GET ALL POSTS
+
+export const getAllPosts = async (req, res) => {
+  try {
+    const post = await Post.find();
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+// DELETE POST
+
+export const errasePost = async (req, res) => {
+  const { postId } = req.params;
+  
+  try {
+      const post = await Post.findById(postId);
+      if (!post) {
+          return res.status(404).json({ message: "Post not found" });
+      }
+
+      await Post.findByIdAndDelete(postId);
+      res.status(200).json({ message: "Post deleted successfully" });
+  } catch (err) {
+      res.status(500).json({ message: "Server error: " + err.message });
+  }
+};
