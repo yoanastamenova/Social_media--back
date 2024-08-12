@@ -94,3 +94,27 @@ export const deletePost = async (req, res) => {
       res.status(500).json({ message: "Server error: " + err.message });
   }
 };
+
+/* UPDATE POST DESCRIPTION */
+export const updatePost = async (req, res) => {
+  const { postId } = req.params;
+  const { description } = req.body;
+  const userIdFromToken = req.user.id; // Assuming your authentication middleware adds user id to req.user
+
+  try {
+      const post = await Post.findById(postId);
+      if (!post) {
+          return res.status(404).json({ message: "Post not found" });
+      }
+
+      if (post.userId.toString() !== userIdFromToken) {
+          return res.status(401).json({ message: "Unauthorized: You can only update your own posts." });
+      }
+
+      post.description = description;
+      const updatedPost = await Post.findByIdAndUpdate(postId, { description: post.description }, { new: true });
+      res.status(200).json(updatedPost);
+  } catch (err) {
+      res.status(500).json({ message: "Server error: " + err.message });
+  }
+};
