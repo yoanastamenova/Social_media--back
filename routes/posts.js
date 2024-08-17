@@ -17,7 +17,7 @@ router.patch('/:postId', verifyToken, updatePost);
 router.delete('/:postId', verifyToken, deletePost);
 
 //ADMIN CRUD
-router.get("/posts", isAdmin, getAllPosts);
-router.delete("/:id", isAdmin, errasePost);
+router.get("/all", isAdmin, getAllPosts);
+router.delete("/delete/:id", isAdmin, errasePost);
 
 export default router;

@@ -13,6 +13,7 @@ import { isAdmin } from "../middleware/isAdmin.js";
 const router = express.Router();
 
 /* READ */
+router.get("/all", isAdmin, getAllUsers);
 router.get("/:id", verifyToken, getUser);
 router.get("/:id/friends", verifyToken, getUserFriends);
 
@@ -21,7 +22,6 @@ router.patch("/:id/:friendId", verifyToken, addRemoveFriend);
 router.put("/:id", verifyToken, updateUser);
 
 /* ADMIN CRUD */
-router.delete("/dashboard/:id", isAdmin, deleteUser);
-router.get("/all", isAdmin, getAllUsers);
+router.delete("/delete/:id", isAdmin, deleteUser);
 
 export default router;
