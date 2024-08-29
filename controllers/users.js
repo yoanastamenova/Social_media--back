@@ -122,3 +122,28 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
+
+//SEARCH USERS
+
+export const searchUsers = async (req, res) => {
+  const searchQuery = req.query.q;
+
+  if (!searchQuery) {
+      return res.status(400).json({ message: "Search query is required" });
+  }
+
+  try {
+      const users = await User.find({
+          $or: [
+              { firstName: { $regex: searchQuery, $options: "i" } },
+              { lastName: { $regex: searchQuery, $options: "i" } },
+              { occupation: { $regex: searchQuery, $options: "i" } },
+              // You can add more fields to search by
+          ]
+      });
+
+      res.status(200).json(users);
+  } catch (err) {
+      res.status(500).json({ message: err.message });
+  }
+};
